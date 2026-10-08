@@ -31,7 +31,7 @@ const Footer = ({ showAlert }) => {
         backgroundColor: 'var(--bg-dark)',
         color: '#FFFFFF',
         borderTop: '1px solid var(--border-dark)',
-        paddingTop: '5rem',
+        paddingTop: '4.5rem',
         paddingBottom: '2.5rem'
       }}
     >
@@ -48,15 +48,16 @@ const Footer = ({ showAlert }) => {
                 marginBottom: '1.2rem'
               }}
             >
-              <span style={{ color: 'var(--accent-gold)', fontSize: '1.3rem' }}>
+              <span style={{ color: 'var(--accent-gold)', fontSize: '1.25rem', display: 'flex' }}>
                 <FaGem />
               </span>
               <span
                 style={{
                   fontFamily: 'var(--font-serif)',
-                  fontSize: '1.8rem',
+                  fontSize: '1.75rem',
                   letterSpacing: '0.18em',
-                  color: '#FFFFFF'
+                  color: '#FFFFFF',
+                  fontWeight: 600
                 }}
               >
                 AURA
@@ -81,7 +82,8 @@ const Footer = ({ showAlert }) => {
                   alignItems: 'center',
                   justifyContent: 'center',
                   color: '#FFFFFF',
-                  fontSize: '0.9rem'
+                  fontSize: '0.85rem',
+                  transition: 'var(--transition-smooth)'
                 }}
                 aria-label="Instagram"
               >
@@ -100,7 +102,8 @@ const Footer = ({ showAlert }) => {
                   alignItems: 'center',
                   justifyContent: 'center',
                   color: '#FFFFFF',
-                  fontSize: '0.9rem'
+                  fontSize: '0.85rem',
+                  transition: 'var(--transition-smooth)'
                 }}
                 aria-label="Pinterest"
               >
@@ -119,7 +122,8 @@ const Footer = ({ showAlert }) => {
                   alignItems: 'center',
                   justifyContent: 'center',
                   color: '#FFFFFF',
-                  fontSize: '0.9rem'
+                  fontSize: '0.85rem',
+                  transition: 'var(--transition-smooth)'
                 }}
                 aria-label="Facebook"
               >
@@ -132,40 +136,45 @@ const Footer = ({ showAlert }) => {
             <h4
               style={{
                 fontFamily: 'var(--font-sans)',
-                fontSize: '0.85rem',
+                fontSize: '0.82rem',
                 textTransform: 'uppercase',
-                letterSpacing: '0.12em',
-                color: 'var(--accent-gold)',
+                letterSpacing: '0.14em',
+                color: 'var(--accent-gold-light)',
                 marginBottom: '1.3rem',
                 fontWeight: 600
               }}
             >
               Collections
             </h4>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.7rem' }}>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
               <li>
                 <Link to="/shop" style={{ color: 'rgba(255, 255, 255, 0.75)', fontSize: '0.88rem' }}>
                   All Jewellery
                 </Link>
               </li>
               <li>
-                <Link to="/shop" style={{ color: 'rgba(255, 255, 255, 0.75)', fontSize: '0.88rem' }}>
+                <Link to="/shop?category=rings" style={{ color: 'rgba(255, 255, 255, 0.75)', fontSize: '0.88rem' }}>
                   Rings
                 </Link>
               </li>
               <li>
-                <Link to="/shop" style={{ color: 'rgba(255, 255, 255, 0.75)', fontSize: '0.88rem' }}>
+                <Link to="/shop?category=necklaces" style={{ color: 'rgba(255, 255, 255, 0.75)', fontSize: '0.88rem' }}>
                   Necklaces
                 </Link>
               </li>
               <li>
-                <Link to="/shop" style={{ color: 'rgba(255, 255, 255, 0.75)', fontSize: '0.88rem' }}>
+                <Link to="/shop?category=earrings" style={{ color: 'rgba(255, 255, 255, 0.75)', fontSize: '0.88rem' }}>
                   Earrings
                 </Link>
               </li>
               <li>
-                <Link to="/shop" style={{ color: 'rgba(255, 255, 255, 0.75)', fontSize: '0.88rem' }}>
+                <Link to="/shop?category=bracelets" style={{ color: 'rgba(255, 255, 255, 0.75)', fontSize: '0.88rem' }}>
                   Bracelets
+                </Link>
+              </li>
+              <li>
+                <Link to="/shop?category=sets" style={{ color: 'rgba(255, 255, 255, 0.75)', fontSize: '0.88rem' }}>
+                  Sets
                 </Link>
               </li>
             </ul>
@@ -175,25 +184,20 @@ const Footer = ({ showAlert }) => {
             <h4
               style={{
                 fontFamily: 'var(--font-sans)',
-                fontSize: '0.85rem',
+                fontSize: '0.82rem',
                 textTransform: 'uppercase',
-                letterSpacing: '0.12em',
-                color: 'var(--accent-gold)',
+                letterSpacing: '0.14em',
+                color: 'var(--accent-gold-light)',
                 marginBottom: '1.3rem',
                 fontWeight: 600
               }}
             >
               Customer Care
             </h4>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.7rem' }}>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
               <li>
                 <Link to="/about" style={{ color: 'rgba(255, 255, 255, 0.75)', fontSize: '0.88rem' }}>
                   About Us
-                </Link>
-              </li>
-              <li>
-                <Link to="/cart" style={{ color: 'rgba(255, 255, 255, 0.75)', fontSize: '0.88rem' }}>
-                  Track Order
                 </Link>
               </li>
               <li>
@@ -202,8 +206,13 @@ const Footer = ({ showAlert }) => {
                 </Link>
               </li>
               <li>
+                <Link to="/cart" style={{ color: 'rgba(255, 255, 255, 0.75)', fontSize: '0.88rem' }}>
+                  Shopping Bag
+                </Link>
+              </li>
+              <li>
                 <Link to="/login" style={{ color: 'rgba(255, 255, 255, 0.75)', fontSize: '0.88rem' }}>
-                  My Account
+                  Account / Sign In
                 </Link>
               </li>
             </ul>
@@ -213,18 +222,18 @@ const Footer = ({ showAlert }) => {
             <h4
               style={{
                 fontFamily: 'var(--font-sans)',
-                fontSize: '0.85rem',
+                fontSize: '0.82rem',
                 textTransform: 'uppercase',
-                letterSpacing: '0.12em',
-                color: 'var(--accent-gold)',
+                letterSpacing: '0.14em',
+                color: 'var(--accent-gold-light)',
                 marginBottom: '1.3rem',
                 fontWeight: 600
               }}
             >
               Newsletter
             </h4>
-            <p style={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: '0.88rem', marginBottom: '1rem' }}>
-              Subscribe to get notified about new arrivals, festive deals, and styling inspiration.
+            <p style={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: '0.88rem', marginBottom: '1rem', lineHeight: 1.6 }}>
+              Subscribe to get notified about new arrivals, collections, and styling inspiration.
             </p>
 
             <form onSubmit={handleSubscribe} style={{ display: 'flex', gap: '0.5rem', marginBottom: '1.5rem' }}>
@@ -236,7 +245,7 @@ const Footer = ({ showAlert }) => {
                 onChange={(e) => setEmail(e.target.value)}
                 style={{
                   backgroundColor: 'rgba(255, 255, 255, 0.08)',
-                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  border: '1px solid rgba(255, 255, 255, 0.18)',
                   borderRadius: '2px',
                   color: '#FFFFFF',
                   padding: '0.65rem 1rem',
@@ -249,18 +258,18 @@ const Footer = ({ showAlert }) => {
               </button>
             </form>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', color: 'rgba(255, 255, 255, 0.65)', fontSize: '0.82rem' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.45rem', color: 'rgba(255, 255, 255, 0.65)', fontSize: '0.82rem' }}>
               <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
                 <FaMapMarkerAlt style={{ color: 'var(--accent-gold)', marginTop: '3px' }} />
-                <span>[Store Address], [Area / Locality], [City], [State] – [PIN Code], India</span>
+                <span>AURA Jewellery Studio, New Delhi, India</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <FaPhoneAlt style={{ color: 'var(--accent-gold)' }} />
-                <span>+91 XXXXX XXXXX &bull; Mon-Sat 10:00 AM - 7:00 PM IST</span>
+                <span>+91 98765 43210 &bull; Mon-Sat 10:00 AM - 7:00 PM IST</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <FaEnvelope style={{ color: 'var(--accent-gold)' }} />
-                <span>hello@example.com</span>
+                <span>support@aurajewellery.com</span>
               </div>
             </div>
           </div>
@@ -280,7 +289,7 @@ const Footer = ({ showAlert }) => {
           }}
         >
           <div>
-            &copy; {new Date().getFullYear()} AURA Jewellery. All Rights Reserved.
+            &copy; {new Date().getFullYear()} AURA Jewellery &amp; Accessories. All Rights Reserved.
           </div>
           <div style={{ display: 'flex', gap: '1.5rem' }}>
             <span>Privacy Policy</span>

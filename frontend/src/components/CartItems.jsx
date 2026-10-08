@@ -55,7 +55,7 @@ const CartItems = ({ showAlert }) => {
       setShowAddressModal(false);
       setOrderComplete(true);
       clearCart();
-    }, 1200);
+    }, 800);
   };
 
   if (orderComplete) {
@@ -66,41 +66,42 @@ const CartItems = ({ showAlert }) => {
             maxWidth: '560px',
             margin: '0 auto',
             backgroundColor: 'var(--bg-card)',
-            padding: '3.5rem 2rem',
-            borderRadius: '4px',
+            padding: '3.5rem 2.5rem',
+            borderRadius: '3px',
             border: '1px solid var(--border-color)',
             boxShadow: 'var(--shadow-sm)'
           }}
         >
           <div
             style={{
-              width: '64px',
-              height: '64px',
+              width: '60px',
+              height: '60px',
               borderRadius: '50%',
               backgroundColor: 'var(--accent-gold-light)',
               color: 'var(--accent-gold-dark)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              fontSize: '2rem',
+              fontSize: '1.8rem',
               margin: '0 auto 1.5rem auto'
             }}
           >
             <FaCheckCircle />
           </div>
-          <h2 style={{ fontSize: '2rem', marginBottom: '0.8rem' }}>Order Placed Successfully!</h2>
-          <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem', lineHeight: 1.6 }}>
+          <h2 style={{ fontSize: '2.2rem', marginBottom: '0.8rem', fontFamily: 'var(--font-serif)' }}>Order Placed Successfully</h2>
+          <p style={{ color: 'var(--text-secondary)', marginBottom: '1.2rem', lineHeight: 1.65 }}>
             Thank you for shopping with AURA. Your order has been placed with <strong>Cash on Delivery</strong>.
           </p>
           <div
             style={{
               backgroundColor: 'var(--bg-secondary)',
-              padding: '0.85rem 1.2rem',
+              padding: '0.8rem 1.2rem',
               borderRadius: '3px',
               fontSize: '0.88rem',
               display: 'inline-block',
               marginBottom: '1.8rem',
-              color: 'var(--text-primary)'
+              color: 'var(--text-primary)',
+              border: '1px solid var(--border-color)'
             }}
           >
             Payment Method: <strong>Cash on Delivery</strong>
@@ -124,26 +125,26 @@ const CartItems = ({ showAlert }) => {
         <div style={{ maxWidth: '480px', margin: '0 auto' }}>
           <div
             style={{
-              width: '70px',
-              height: '70px',
+              width: '64px',
+              height: '64px',
               borderRadius: '50%',
               backgroundColor: 'var(--bg-secondary)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              fontSize: '1.75rem',
+              fontSize: '1.6rem',
               color: 'var(--text-muted)',
               margin: '0 auto 1.5rem auto'
             }}
           >
             <FaShoppingBag />
           </div>
-          <h2 style={{ fontSize: '2rem', marginBottom: '0.8rem' }}>Your Shopping Bag is Empty</h2>
+          <h2 style={{ fontSize: '2rem', marginBottom: '0.8rem', fontFamily: 'var(--font-serif)' }}>Your Shopping Bag is Empty</h2>
           <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem' }}>
-            Explore our curated collections of rings, necklaces, earrings, and bracelets to begin.
+            Explore our curated collections of rings, necklaces, earrings, bracelets, and sets to begin.
           </p>
           <Link to="/shop" className="btn-aura-primary">
-            Explore Collections <FaArrowRight />
+            Explore Collections <FaArrowRight style={{ fontSize: '0.75rem' }} />
           </Link>
         </div>
       </div>
@@ -162,7 +163,7 @@ const CartItems = ({ showAlert }) => {
           style={{
             backgroundColor: 'var(--bg-secondary)',
             padding: '1rem 1.5rem',
-            borderRadius: '4px',
+            borderRadius: '3px',
             marginBottom: '2.5rem',
             border: '1px solid var(--border-color)',
             display: 'flex',
@@ -181,7 +182,7 @@ const CartItems = ({ showAlert }) => {
             <div
               style={{
                 backgroundColor: 'var(--bg-card)',
-                borderRadius: '4px',
+                borderRadius: '3px',
                 border: '1px solid var(--border-color)',
                 overflow: 'hidden'
               }}
@@ -203,8 +204,8 @@ const CartItems = ({ showAlert }) => {
                       src={item.img}
                       alt={item.title}
                       style={{
-                        width: '90px',
-                        height: '90px',
+                        width: '85px',
+                        height: '85px',
                         objectFit: 'cover',
                         borderRadius: '2px',
                         border: '1px solid var(--border-color-light)'
@@ -213,13 +214,18 @@ const CartItems = ({ showAlert }) => {
                   </Link>
 
                   <div style={{ flex: 1, minWidth: '180px' }}>
-                    <span style={{ fontSize: '0.75rem', textTransform: 'uppercase', color: 'var(--accent-gold-dark)', letterSpacing: '0.08em', fontWeight: 600 }}>
+                    <span style={{ fontSize: '0.72rem', textTransform: 'uppercase', color: 'var(--accent-gold-dark)', letterSpacing: '0.08em', fontWeight: 600 }}>
                       {item.categoryLabel || item.category}
                     </span>
-                    <h3 style={{ fontSize: '1.1rem', marginBottom: '0.3rem' }}>
+                    <h3 style={{ fontSize: '1.05rem', marginBottom: '0.3rem', fontFamily: 'var(--font-sans)', fontWeight: 600 }}>
                       <Link to={`/product/${item.id}`}>{item.title}</Link>
                     </h3>
-                    <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+                    {item.material && (
+                      <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginBottom: '0.3rem' }}>
+                        {item.material}
+                      </div>
+                    )}
+                    <div style={{ fontSize: '0.88rem', color: 'var(--text-secondary)' }}>
                       ₹{item.price.toLocaleString('en-IN')} each
                     </div>
                   </div>
@@ -235,7 +241,8 @@ const CartItems = ({ showAlert }) => {
                     <button
                       type="button"
                       onClick={() => updateCartQty(item.id, (item.qty || 1) - 1)}
-                      style={{ padding: '0.4rem 0.75rem', fontSize: '0.9rem' }}
+                      style={{ padding: '0.4rem 0.75rem', fontSize: '0.9rem', color: 'var(--text-primary)' }}
+                      aria-label="Decrease quantity"
                     >
                       -
                     </button>
@@ -245,14 +252,15 @@ const CartItems = ({ showAlert }) => {
                     <button
                       type="button"
                       onClick={() => updateCartQty(item.id, (item.qty || 1) + 1)}
-                      style={{ padding: '0.4rem 0.75rem', fontSize: '0.9rem' }}
+                      style={{ padding: '0.4rem 0.75rem', fontSize: '0.9rem', color: 'var(--text-primary)' }}
+                      aria-label="Increase quantity"
                     >
                       +
                     </button>
                   </div>
 
                   <div style={{ textAlign: 'right', minWidth: '90px' }}>
-                    <div style={{ fontWeight: 600, fontSize: '1.05rem', color: 'var(--text-primary)' }}>
+                    <div style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--text-primary)' }}>
                       ₹{(item.price * (item.qty || 1)).toLocaleString('en-IN')}
                     </div>
                   </div>
@@ -266,9 +274,11 @@ const CartItems = ({ showAlert }) => {
                     style={{
                       color: 'var(--text-muted)',
                       padding: '0.5rem',
-                      fontSize: '0.95rem'
+                      fontSize: '0.9rem',
+                      transition: 'var(--transition-smooth)'
                     }}
                     title="Remove item"
+                    aria-label="Remove item"
                   >
                     <FaTrashAlt />
                   </button>
@@ -276,8 +286,8 @@ const CartItems = ({ showAlert }) => {
               ))}
             </div>
 
-            <div style={{ marginTop: '1.5rem', display: 'flex', justifyContent: 'space-between' }}>
-              <Link to="/shop" className="btn-aura-outline" style={{ fontSize: '0.82rem' }}>
+            <div style={{ marginTop: '1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <Link to="/shop" className="btn-aura-outline" style={{ fontSize: '0.8rem' }}>
                 &larr; Continue Shopping
               </Link>
               <button
@@ -294,13 +304,13 @@ const CartItems = ({ showAlert }) => {
             <div
               style={{
                 backgroundColor: 'var(--bg-card)',
-                borderRadius: '4px',
+                borderRadius: '3px',
                 border: '1px solid var(--border-color)',
                 padding: '2rem',
                 boxShadow: 'var(--shadow-sm)'
               }}
             >
-              <h3 style={{ fontSize: '1.3rem', marginBottom: '1.5rem', borderBottom: '1px solid var(--border-color-light)', paddingBottom: '0.8rem' }}>
+              <h3 style={{ fontSize: '1.25rem', marginBottom: '1.5rem', borderBottom: '1px solid var(--border-color-light)', paddingBottom: '0.8rem', fontFamily: 'var(--font-serif)' }}>
                 Order Summary
               </h3>
 
@@ -310,13 +320,6 @@ const CartItems = ({ showAlert }) => {
                   <span style={{ fontWeight: 600 }}>₹{cartSubtotal.toLocaleString('en-IN')}</span>
                 </div>
 
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <span style={{ color: 'var(--text-secondary)' }}>Shipping</span>
-                  <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', fontStyle: 'italic' }}>
-                    To be calculated
-                  </span>
-                </div>
-
                 <div
                   style={{
                     borderTop: '1px solid var(--border-color)',
@@ -324,7 +327,7 @@ const CartItems = ({ showAlert }) => {
                     display: 'flex',
                     justifyContent: 'space-between',
                     fontSize: '1.25rem',
-                    fontWeight: 600,
+                    fontWeight: 700,
                     color: 'var(--text-primary)'
                   }}
                 >
@@ -354,7 +357,7 @@ const CartItems = ({ showAlert }) => {
                 type="button"
                 className="btn-aura-primary"
                 onClick={handleProceedToCheckout}
-                style={{ width: '100%', padding: '0.95rem 1rem', fontSize: '0.88rem' }}
+                style={{ width: '100%', padding: '0.95rem 1rem', fontSize: '0.85rem' }}
               >
                 Proceed to Checkout
               </button>
@@ -376,12 +379,13 @@ const CartItems = ({ showAlert }) => {
           </div>
         </div>
 
+        {/* Checkout Modal */}
         {showAddressModal && (
           <div
             style={{
               position: 'fixed',
               inset: 0,
-              backgroundColor: 'rgba(0, 0, 0, 0.65)',
+              backgroundColor: 'rgba(22, 21, 19, 0.65)',
               backdropFilter: 'blur(4px)',
               zIndex: 9999,
               display: 'flex',
@@ -393,7 +397,7 @@ const CartItems = ({ showAlert }) => {
             <div
               style={{
                 backgroundColor: '#FFFFFF',
-                borderRadius: '4px',
+                borderRadius: '3px',
                 maxWidth: '620px',
                 width: '100%',
                 maxHeight: '90vh',
@@ -409,7 +413,8 @@ const CartItems = ({ showAlert }) => {
                 <button
                   type="button"
                   onClick={() => setShowAddressModal(false)}
-                  style={{ fontSize: '1.2rem', color: 'var(--text-muted)' }}
+                  style={{ fontSize: '1.25rem', color: 'var(--text-muted)', padding: '0.2rem' }}
+                  aria-label="Close modal"
                 >
                   &times;
                 </button>
@@ -553,8 +558,8 @@ const CartItems = ({ showAlert }) => {
                       style={{
                         display: 'flex',
                         justifyContent: 'space-between',
-                        fontWeight: 600,
-                        fontSize: '1.1rem',
+                        fontWeight: 700,
+                        fontSize: '1.15rem',
                         marginBottom: '1rem'
                       }}
                     >

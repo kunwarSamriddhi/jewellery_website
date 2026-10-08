@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   FaGem,
   FaHeart,
@@ -52,9 +53,9 @@ const WhyChooseUs = () => {
               <div
                 style={{
                   backgroundColor: 'var(--bg-card)',
-                  padding: '2.5rem 2rem',
+                  padding: '2.2rem 1.8rem',
                   borderRadius: '3px',
-                  border: '1px solid var(--border-color-light)',
+                  border: '1px solid var(--border-color)',
                   height: '100%',
                   display: 'flex',
                   flexDirection: 'column',
@@ -64,24 +65,24 @@ const WhyChooseUs = () => {
               >
                 <div
                   style={{
-                    width: '52px',
-                    height: '52px',
+                    width: '46px',
+                    height: '46px',
                     borderRadius: '50%',
                     backgroundColor: 'var(--accent-gold-light)',
                     color: 'var(--accent-gold-dark)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    fontSize: '1.35rem',
-                    marginBottom: '1.5rem'
+                    fontSize: '1.2rem',
+                    marginBottom: '1.3rem'
                   }}
                 >
                   {item.icon}
                 </div>
-                <h3 style={{ fontSize: '1.25rem', marginBottom: '0.6rem', fontFamily: 'var(--font-serif)' }}>
+                <h3 style={{ fontSize: '1.18rem', marginBottom: '0.5rem', fontFamily: 'var(--font-serif)', fontWeight: 600 }}>
                   {item.title}
                 </h3>
-                <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: 1.6, margin: 0 }}>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: 1.65, margin: 0 }}>
                   {item.description}
                 </p>
               </div>

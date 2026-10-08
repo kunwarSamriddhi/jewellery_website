@@ -8,6 +8,7 @@ import { FaSearch, FaTimes, FaSlidersH } from 'react-icons/fa';
 const Shop = ({ showAlert }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const categoryFromUrl = searchParams.get('category');
+  const jewelleryTypeFromUrl = searchParams.get('jewelleryType');
 
   const {
     state: { products, selectedCategory, searchQuery, sortBy },
@@ -19,22 +20,40 @@ const Shop = ({ showAlert }) => {
   useEffect(() => {
     if (categoryFromUrl) {
       setSelectedCategory(categoryFromUrl.toLowerCase());
+    } else {
+      setSelectedCategory('all');
     }
   }, [categoryFromUrl, setSelectedCategory]);
 
   const handleCategoryChange = (slug) => {
     const normalized = slug.toLowerCase();
     setSelectedCategory(normalized);
+    const newParams = new URLSearchParams(searchParams);
+    
     if (normalized === 'all') {
-      searchParams.delete('category');
-      setSearchParams(searchParams);
+      newParams.delete('category');
     } else {
-      setSearchParams({ category: normalized });
+      newParams.set('category', normalized);
     }
+    
+    setSearchParams(newParams);
+  };
+
+  const handleResetFilters = () => {
+    setSelectedCategory('all');
+    setSearchQuery('');
+    setSearchParams({});
   };
 
   const filteredProducts = useMemo(() => {
     let result = [...products];
+
+    if (jewelleryTypeFromUrl) {
+      const targetType = jewelleryTypeFromUrl.toLowerCase().trim();
+      result = result.filter(
+        (p) => p.jewelleryType && p.jewelleryType.toLowerCase().trim() === targetType
+      );
+    }
 
     const activeCat = (selectedCategory || 'all').trim().toLowerCase();
     if (activeCat && activeCat !== 'all') {
@@ -48,8 +67,10 @@ const Shop = ({ showAlert }) => {
       result = result.filter(
         (p) =>
           (p.title && p.title.toLowerCase().includes(q)) ||
+          (p.name && p.name.toLowerCase().includes(q)) ||
           (p.description && p.description.toLowerCase().includes(q)) ||
           (p.material && p.material.toLowerCase().includes(q)) ||
+          (p.jewelleryType && p.jewelleryType.toLowerCase().includes(q)) ||
           (p.category && p.category.toLowerCase().includes(q)) ||
           (p.categoryLabel && p.categoryLabel.toLowerCase().includes(q))
       );
@@ -59,36 +80,58 @@ const Shop = ({ showAlert }) => {
       result.sort((a, b) => a.price - b.price);
     } else if (sortBy === 'price-high') {
       result.sort((a, b) => b.price - a.price);
-    } else if (sortBy === 'rating') {
-      result.sort((a, b) => (b.rating || 0) - (a.rating || 0));
     }
 
     return result;
-  }, [products, selectedCategory, searchQuery, sortBy]);
+  }, [products, selectedCategory, jewelleryTypeFromUrl, searchQuery, sortBy]);
 
   const activeCategoryObj =
     categories.find(
       (c) => c.slug.toLowerCase() === (selectedCategory || 'all').toLowerCase()
     ) || categories[0];
 
+  const getPageTitle = () => {
+    const catName = activeCategoryObj.slug !== 'all' ? activeCategoryObj.name : '';
+    if (jewelleryTypeFromUrl === 'artificial') {
+      return catName ? `Artificial Jewellery — ${catName}` : 'Artificial Jewellery Collection';
+    }
+    if (jewelleryTypeFromUrl === 'precious') {
+      return catName ? `Precious Jewellery — ${catName}` : 'Precious Jewellery Collection';
+    }
+    return catName ? activeCategoryObj.name : 'All Collections';
+  };
+
+  const getPageSubtitle = () => {
+    if (jewelleryTypeFromUrl === 'artificial') {
+      return 'Fashion & Everyday Jewellery';
+    }
+    if (jewelleryTypeFromUrl === 'precious') {
+      return 'Fine Gold, Silver & Gemstone Jewellery';
+    }
+    return 'Jewellery Collections';
+  };
+
   return (
     <div style={{ padding: '3.5rem 1.5rem 6rem 1.5rem', backgroundColor: 'var(--bg-primary)' }}>
       <div className="container" style={{ maxWidth: '1360px', margin: '0 auto' }}>
         <div className="section-header" style={{ marginBottom: '3rem' }}>
-          <span className="section-subtitle">Jewellery Collections</span>
-          <h1 className="section-title">
-            {selectedCategory === 'all' || !selectedCategory ? 'All Collections' : activeCategoryObj.name}
-          </h1>
+          <span className="section-subtitle">{getPageSubtitle()}</span>
+          <h1 className="section-title">{getPageTitle()}</h1>
           <p className="section-description">
-            {activeCategoryObj.description || 'Explore our complete suite of jewellery pieces.'}
+            {jewelleryTypeFromUrl === 'artificial'
+              ? 'Contemporary fashion jewellery pieces crafted for versatile daily styling and layering.'
+              : jewelleryTypeFromUrl === 'precious'
+              ? 'Authentic fine jewellery pieces featuring solid gold, sterling silver, diamonds, and natural pearls.'
+              : activeCategoryObj.description || 'Explore our complete suite of jewellery pieces.'}
           </p>
         </div>
 
+        {/* Filters & Controls Toolbar */}
         <div
           style={{
             backgroundColor: 'var(--bg-card)',
             padding: '1.25rem 1.5rem',
-            borderRadius: '4px',
+            borderRadius: '3px',
             border: '1px solid var(--border-color)',
             marginBottom: '2.5rem',
             display: 'flex',
@@ -98,7 +141,8 @@ const Shop = ({ showAlert }) => {
             gap: '1rem'
           }}
         >
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', alignItems: 'center' }}>
+          {/* Category Tabs */}
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.45rem', alignItems: 'center' }}>
             {categories.map((cat) => {
               const isSelected =
                 (selectedCategory || 'all').toLowerCase() === cat.slug.toLowerCase();
@@ -108,9 +152,9 @@ const Shop = ({ showAlert }) => {
                   type="button"
                   onClick={() => handleCategoryChange(cat.slug)}
                   style={{
-                    padding: '0.45rem 1.1rem',
+                    padding: '0.45rem 1.15rem',
                     borderRadius: '20px',
-                    fontSize: '0.8rem',
+                    fontSize: '0.78rem',
                     fontWeight: 600,
                     textTransform: 'uppercase',
                     letterSpacing: '0.06em',
@@ -126,8 +170,9 @@ const Shop = ({ showAlert }) => {
             })}
           </div>
 
+          {/* Search & Sort */}
           <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '1rem' }}>
-            <div style={{ position: 'relative', width: '240px' }}>
+            <div style={{ position: 'relative', width: '230px' }}>
               <input
                 type="text"
                 placeholder="Search pieces..."
@@ -153,6 +198,7 @@ const Shop = ({ showAlert }) => {
                     transform: 'translateY(-50%)',
                     color: 'var(--text-muted)'
                   }}
+                  aria-label="Clear search"
                 >
                   <FaTimes />
                 </button>
@@ -164,20 +210,20 @@ const Shop = ({ showAlert }) => {
                     top: '50%',
                     transform: 'translateY(-50%)',
                     color: 'var(--text-muted)',
-                    fontSize: '0.8rem'
+                    fontSize: '0.78rem'
                   }}
                 />
               )}
             </div>
 
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <FaSlidersH style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }} />
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
+              <FaSlidersH style={{ color: 'var(--text-muted)', fontSize: '0.8rem' }} />
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
                 style={{
                   padding: '0.45rem 0.85rem',
-                  fontSize: '0.85rem',
+                  fontSize: '0.82rem',
                   borderRadius: '2px',
                   border: '1px solid var(--border-color)',
                   backgroundColor: 'var(--bg-primary)',
@@ -187,23 +233,23 @@ const Shop = ({ showAlert }) => {
                 <option value="default">Featured / Default</option>
                 <option value="price-low">Price: Low to High</option>
                 <option value="price-high">Price: High to Low</option>
-                <option value="rating">Highest Rated</option>
               </select>
             </div>
           </div>
         </div>
 
+        {/* Results Info Bar */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
           <span style={{ fontSize: '0.88rem', color: 'var(--text-secondary)' }}>
             Showing <strong>{filteredProducts.length}</strong> items
+            {jewelleryTypeFromUrl && (
+              <span> in <strong>{jewelleryTypeFromUrl === 'artificial' ? 'Artificial' : 'Precious'} Jewellery</strong></span>
+            )}
           </span>
-          {(selectedCategory !== 'all' || searchQuery) && (
+          {(selectedCategory !== 'all' || searchQuery || jewelleryTypeFromUrl) && (
             <button
               type="button"
-              onClick={() => {
-                handleCategoryChange('all');
-                setSearchQuery('');
-              }}
+              onClick={handleResetFilters}
               style={{
                 fontSize: '0.82rem',
                 color: 'var(--accent-gold-dark)',
@@ -216,6 +262,7 @@ const Shop = ({ showAlert }) => {
           )}
         </div>
 
+        {/* Product Grid */}
         {filteredProducts.length > 0 ? (
           <div className="row g-4">
             {filteredProducts.map((product) => (
@@ -231,20 +278,19 @@ const Shop = ({ showAlert }) => {
               padding: '5rem 2rem',
               backgroundColor: 'var(--bg-card)',
               border: '1px solid var(--border-color)',
-              borderRadius: '4px'
+              borderRadius: '3px'
             }}
           >
-            <h3 style={{ fontSize: '1.5rem', marginBottom: '0.8rem' }}>No Jewellery Found</h3>
+            <h3 style={{ fontSize: '1.5rem', marginBottom: '0.8rem', fontFamily: 'var(--font-serif)' }}>
+              No Jewellery Found
+            </h3>
             <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem' }}>
               We could not find any items matching your selected criteria.
             </p>
             <button
               type="button"
               className="btn-aura-primary"
-              onClick={() => {
-                handleCategoryChange('all');
-                setSearchQuery('');
-              }}
+              onClick={handleResetFilters}
             >
               View All Collections
             </button>

@@ -24,7 +24,7 @@ const Login = ({ showAlert }) => {
       } else {
         if (showAlert) showAlert('danger', 'Please enter valid credentials.');
       }
-    }, 600);
+    }, 500);
   };
 
   return (
@@ -36,16 +36,16 @@ const Login = ({ showAlert }) => {
           margin: '0 auto',
           backgroundColor: 'var(--bg-card)',
           padding: '3rem 2.5rem',
-          borderRadius: '4px',
+          borderRadius: '3px',
           border: '1px solid var(--border-color)',
           boxShadow: 'var(--shadow-sm)'
         }}
       >
-        <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
-          <span style={{ color: 'var(--accent-gold-dark)', fontSize: '1.6rem', display: 'inline-block', marginBottom: '0.6rem' }}>
+        <div style={{ textAlign: 'center', marginBottom: '2.2rem' }}>
+          <span style={{ color: 'var(--accent-gold-dark)', fontSize: '1.5rem', display: 'inline-block', marginBottom: '0.5rem' }}>
             <FaGem />
           </span>
-          <h1 style={{ fontSize: '2rem', fontFamily: 'var(--font-serif)', marginBottom: '0.4rem' }}>
+          <h1 style={{ fontSize: '2rem', fontFamily: 'var(--font-serif)', marginBottom: '0.4rem', fontWeight: 500 }}>
             Client Sign In
           </h1>
           <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem' }}>
@@ -76,7 +76,7 @@ const Login = ({ showAlert }) => {
                   top: '50%',
                   transform: 'translateY(-50%)',
                   color: 'var(--text-muted)',
-                  fontSize: '0.85rem'
+                  fontSize: '0.82rem'
                 }}
               />
             </div>
@@ -87,7 +87,14 @@ const Login = ({ showAlert }) => {
               <label className="form-label mb-0" style={{ fontSize: '0.82rem', fontWeight: 600 }}>
                 Password
               </label>
-              <a href="#forgot" onClick={(e) => { e.preventDefault(); if (showAlert) showAlert('info', 'Password reset instructions would be sent via API.'); }} style={{ fontSize: '0.78rem', color: 'var(--accent-gold-dark)' }}>
+              <a
+                href="#forgot"
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (showAlert) showAlert('info', 'Password reset instructions have been noted.');
+                }}
+                style={{ fontSize: '0.78rem', color: 'var(--accent-gold-dark)' }}
+              >
                 Forgot Password?
               </a>
             </div>
@@ -109,7 +116,7 @@ const Login = ({ showAlert }) => {
                   top: '50%',
                   transform: 'translateY(-50%)',
                   color: 'var(--text-muted)',
-                  fontSize: '0.85rem'
+                  fontSize: '0.82rem'
                 }}
               />
             </div>

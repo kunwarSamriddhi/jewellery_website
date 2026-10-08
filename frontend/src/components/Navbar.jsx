@@ -37,11 +37,12 @@ const Navbar = ({ showAlert }) => {
 
   return (
     <header style={{ position: 'sticky', top: 0, zIndex: 1000, backgroundColor: 'var(--bg-primary)' }}>
+      {/* Top Announcement Bar */}
       <div
         style={{
           backgroundColor: 'var(--bg-dark)',
           color: 'var(--accent-gold-light)',
-          fontSize: '0.75rem',
+          fontSize: '0.74rem',
           letterSpacing: '0.1em',
           textTransform: 'uppercase',
           padding: '0.45rem 1rem',
@@ -52,10 +53,11 @@ const Navbar = ({ showAlert }) => {
         Cash on Delivery Available &bull; Explore Our Latest Jewellery Collections
       </div>
 
+      {/* Main Navigation Bar */}
       <nav
         style={{
           borderBottom: '1px solid var(--border-color)',
-          padding: '1.1rem 1.5rem',
+          padding: '1rem 1.5rem',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
@@ -64,12 +66,13 @@ const Navbar = ({ showAlert }) => {
           position: 'relative'
         }}
       >
+        {/* Mobile Hamburger Toggle */}
         <button
           type="button"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           style={{
             display: 'none',
-            fontSize: '1.25rem',
+            fontSize: '1.2rem',
             color: 'var(--text-primary)',
             padding: '0.25rem'
           }}
@@ -79,6 +82,7 @@ const Navbar = ({ showAlert }) => {
           {mobileMenuOpen ? <FaTimes /> : <FaBars />}
         </button>
 
+        {/* Brand Logo */}
         <Link
           to="/"
           style={{
@@ -91,7 +95,7 @@ const Navbar = ({ showAlert }) => {
           <span
             style={{
               color: 'var(--accent-gold-dark)',
-              fontSize: '1.2rem',
+              fontSize: '1.25rem',
               display: 'flex'
             }}
           >
@@ -126,12 +130,13 @@ const Navbar = ({ showAlert }) => {
           </div>
         </Link>
 
-        <div className="d-none d-lg-flex" style={{ alignItems: 'center', gap: '2rem' }}>
+        {/* Desktop Links */}
+        <div className="d-none d-lg-flex" style={{ alignItems: 'center', gap: '2.2rem' }}>
           <NavLink
             to="/"
             style={({ isActive }) => ({
               fontFamily: 'var(--font-sans)',
-              fontSize: '0.85rem',
+              fontSize: '0.84rem',
               letterSpacing: '0.08em',
               textTransform: 'uppercase',
               fontWeight: isActive ? 600 : 500,
@@ -148,7 +153,7 @@ const Navbar = ({ showAlert }) => {
             onClick={() => handleCategoryNav('all')}
             style={({ isActive }) => ({
               fontFamily: 'var(--font-sans)',
-              fontSize: '0.85rem',
+              fontSize: '0.84rem',
               letterSpacing: '0.08em',
               textTransform: 'uppercase',
               fontWeight: isActive ? 600 : 500,
@@ -168,7 +173,7 @@ const Navbar = ({ showAlert }) => {
               aria-expanded="false"
               style={{
                 fontFamily: 'var(--font-sans)',
-                fontSize: '0.85rem',
+                fontSize: '0.84rem',
                 letterSpacing: '0.08em',
                 textTransform: 'uppercase',
                 fontWeight: 500,
@@ -182,9 +187,9 @@ const Navbar = ({ showAlert }) => {
               className="dropdown-menu shadow-sm"
               aria-labelledby="collectionsMenu"
               style={{
-                borderRadius: '4px',
+                borderRadius: '3px',
                 border: '1px solid var(--border-color)',
-                padding: '0.75rem 0',
+                padding: '0.5rem 0',
                 backgroundColor: 'var(--bg-card)'
               }}
             >
@@ -245,7 +250,7 @@ const Navbar = ({ showAlert }) => {
             to="/about"
             style={({ isActive }) => ({
               fontFamily: 'var(--font-sans)',
-              fontSize: '0.85rem',
+              fontSize: '0.84rem',
               letterSpacing: '0.08em',
               textTransform: 'uppercase',
               fontWeight: isActive ? 600 : 500,
@@ -257,15 +262,17 @@ const Navbar = ({ showAlert }) => {
           </NavLink>
         </div>
 
+        {/* Action Icons */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
           <button
             type="button"
             onClick={() => setSearchOpen(!searchOpen)}
             style={{
-              fontSize: '1.05rem',
+              fontSize: '1rem',
               color: 'var(--text-primary)',
               display: 'flex',
-              alignItems: 'center'
+              alignItems: 'center',
+              padding: '0.2rem'
             }}
             title="Search Products"
             aria-label="Search"
@@ -276,10 +283,11 @@ const Navbar = ({ showAlert }) => {
           <Link
             to="/login"
             style={{
-              fontSize: '1.05rem',
+              fontSize: '1rem',
               color: 'var(--text-primary)',
               display: 'flex',
-              alignItems: 'center'
+              alignItems: 'center',
+              padding: '0.2rem'
             }}
             title="Account / Sign In"
             aria-label="Account"
@@ -291,10 +299,11 @@ const Navbar = ({ showAlert }) => {
             to="/wishlist"
             style={{
               position: 'relative',
-              fontSize: '1.1rem',
+              fontSize: '1.05rem',
               color: 'var(--text-primary)',
               display: 'flex',
-              alignItems: 'center'
+              alignItems: 'center',
+              padding: '0.2rem'
             }}
             title="Saved Items"
             aria-label="Wishlist"
@@ -305,13 +314,13 @@ const Navbar = ({ showAlert }) => {
                 style={{
                   position: 'absolute',
                   top: '-8px',
-                  right: '-10px',
+                  right: '-9px',
                   backgroundColor: 'var(--accent-gold-dark)',
                   color: '#FFFFFF',
                   borderRadius: '50%',
-                  width: '18px',
-                  height: '18px',
-                  fontSize: '0.65rem',
+                  width: '17px',
+                  height: '17px',
+                  fontSize: '0.62rem',
                   fontWeight: 700,
                   display: 'flex',
                   alignItems: 'center',
@@ -327,10 +336,11 @@ const Navbar = ({ showAlert }) => {
             to="/cart"
             style={{
               position: 'relative',
-              fontSize: '1.15rem',
+              fontSize: '1.1rem',
               color: 'var(--text-primary)',
               display: 'flex',
-              alignItems: 'center'
+              alignItems: 'center',
+              padding: '0.2rem'
             }}
             title="Shopping Bag"
             aria-label="Cart"
@@ -341,13 +351,13 @@ const Navbar = ({ showAlert }) => {
                 style={{
                   position: 'absolute',
                   top: '-8px',
-                  right: '-10px',
+                  right: '-9px',
                   backgroundColor: 'var(--text-primary)',
                   color: '#FFFFFF',
                   borderRadius: '50%',
-                  width: '18px',
-                  height: '18px',
-                  fontSize: '0.65rem',
+                  width: '17px',
+                  height: '17px',
+                  fontSize: '0.62rem',
                   fontWeight: 700,
                   display: 'flex',
                   alignItems: 'center',
@@ -361,6 +371,7 @@ const Navbar = ({ showAlert }) => {
         </div>
       </nav>
 
+      {/* Expandable Search Bar */}
       {searchOpen && (
         <div
           style={{
@@ -383,24 +394,25 @@ const Navbar = ({ showAlert }) => {
             <input
               type="text"
               className="form-control"
-              placeholder="Search jewellery by name, category, or style (e.g. Ring, Pearl, Choker, Earrings)..."
+              placeholder="Search jewellery by name, category, or material (e.g. Ring, Pearl, Choker)..."
               value={localSearch}
               onChange={(e) => setLocalSearch(e.target.value)}
               style={{
                 backgroundColor: '#FFFFFF',
                 border: '1px solid var(--border-color)',
-                fontSize: '0.9rem',
-                padding: '0.65rem 1rem'
+                fontSize: '0.88rem',
+                padding: '0.6rem 1rem'
               }}
               autoFocus
             />
-            <button type="submit" className="btn-aura-primary" style={{ padding: '0.65rem 1.4rem' }}>
+            <button type="submit" className="btn-aura-primary" style={{ padding: '0.6rem 1.3rem' }}>
               Search
             </button>
             <button
               type="button"
               onClick={() => setSearchOpen(false)}
               style={{ padding: '0.5rem', color: 'var(--text-secondary)' }}
+              aria-label="Close search"
             >
               <FaTimes />
             </button>
@@ -408,6 +420,7 @@ const Navbar = ({ showAlert }) => {
         </div>
       )}
 
+      {/* Mobile Menu Drawer */}
       {mobileMenuOpen && (
         <div
           className="d-lg-none"
@@ -424,7 +437,7 @@ const Navbar = ({ showAlert }) => {
             to="/"
             onClick={() => setMobileMenuOpen(false)}
             style={{
-              fontSize: '1rem',
+              fontSize: '0.95rem',
               fontWeight: 600,
               textTransform: 'uppercase',
               letterSpacing: '0.08em',
@@ -437,7 +450,7 @@ const Navbar = ({ showAlert }) => {
             to="/shop"
             onClick={() => handleCategoryNav('all')}
             style={{
-              fontSize: '1rem',
+              fontSize: '0.95rem',
               fontWeight: 600,
               textTransform: 'uppercase',
               letterSpacing: '0.08em',
@@ -447,19 +460,19 @@ const Navbar = ({ showAlert }) => {
             All Collections
           </Link>
           <div style={{ paddingLeft: '1rem', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-            <Link to="/shop" onClick={() => handleCategoryNav('rings')} style={{ color: 'var(--text-secondary)' }}>
+            <Link to="/shop" onClick={() => handleCategoryNav('rings')} style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
               &bull; Rings
             </Link>
-            <Link to="/shop" onClick={() => handleCategoryNav('necklaces')} style={{ color: 'var(--text-secondary)' }}>
+            <Link to="/shop" onClick={() => handleCategoryNav('necklaces')} style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
               &bull; Necklaces
             </Link>
-            <Link to="/shop" onClick={() => handleCategoryNav('earrings')} style={{ color: 'var(--text-secondary)' }}>
+            <Link to="/shop" onClick={() => handleCategoryNav('earrings')} style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
               &bull; Earrings
             </Link>
-            <Link to="/shop" onClick={() => handleCategoryNav('bracelets')} style={{ color: 'var(--text-secondary)' }}>
+            <Link to="/shop" onClick={() => handleCategoryNav('bracelets')} style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
               &bull; Bracelets
             </Link>
-            <Link to="/shop" onClick={() => handleCategoryNav('sets')} style={{ color: 'var(--text-secondary)' }}>
+            <Link to="/shop" onClick={() => handleCategoryNav('sets')} style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
               &bull; Sets
             </Link>
           </div>
@@ -467,7 +480,7 @@ const Navbar = ({ showAlert }) => {
             to="/about"
             onClick={() => setMobileMenuOpen(false)}
             style={{
-              fontSize: '1rem',
+              fontSize: '0.95rem',
               fontWeight: 600,
               textTransform: 'uppercase',
               letterSpacing: '0.08em',
@@ -480,7 +493,7 @@ const Navbar = ({ showAlert }) => {
             to="/login"
             onClick={() => setMobileMenuOpen(false)}
             style={{
-              fontSize: '1rem',
+              fontSize: '0.95rem',
               fontWeight: 600,
               textTransform: 'uppercase',
               letterSpacing: '0.08em',

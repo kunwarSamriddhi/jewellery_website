@@ -11,13 +11,13 @@ const CategorySection = () => {
   const handleCategoryClick = (catSlug) => {
     setSelectedCategory(catSlug.toLowerCase());
     setSearchQuery('');
-    navigate('/shop');
+    navigate(`/shop?category=${catSlug.toLowerCase()}`);
   };
 
   const displayCategories = categories.filter((cat) => cat.id !== 'all');
 
   return (
-    <section style={{ padding: '6rem 1.5rem', backgroundColor: 'var(--bg-primary)' }}>
+    <section style={{ padding: '5.5rem 1.5rem', backgroundColor: 'var(--bg-primary)' }}>
       <div className="container" style={{ maxWidth: '1360px', margin: '0 auto' }}>
         <div className="section-header">
           <span className="section-subtitle">Curated Collections</span>
@@ -39,9 +39,9 @@ const CategorySection = () => {
                 >
                   <img src={cat.image} alt={cat.name} loading="lazy" />
                   <div className="category-overlay">
-                    <span className="category-count">Explore Collection</span>
+                    <span className="category-count">Collection</span>
                     <h3 className="category-title">{cat.name}</h3>
-                    <p style={{ color: 'rgba(255, 255, 255, 0.8)', fontSize: '0.85rem', marginBottom: '0.8rem' }}>
+                    <p style={{ color: 'rgba(255, 255, 255, 0.85)', fontSize: '0.86rem', marginBottom: '0.85rem' }}>
                       {cat.description}
                     </p>
                     <div
@@ -49,14 +49,14 @@ const CategorySection = () => {
                         display: 'inline-flex',
                         alignItems: 'center',
                         gap: '0.4rem',
-                        color: 'var(--accent-gold)',
-                        fontSize: '0.82rem',
+                        color: 'var(--accent-gold-light)',
+                        fontSize: '0.78rem',
                         fontWeight: 600,
                         textTransform: 'uppercase',
-                        letterSpacing: '0.08em'
+                        letterSpacing: '0.1em'
                       }}
                     >
-                      Discover Pieces <FaArrowRight style={{ fontSize: '0.75rem' }} />
+                      Discover Pieces <FaArrowRight style={{ fontSize: '0.72rem' }} />
                     </div>
                   </div>
                 </div>
