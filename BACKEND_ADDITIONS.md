@@ -1,7 +1,4 @@
-# Additions to your backend
-
-Your backend works with this panel for login, products and reading orders.
-Three things are needed for everything to work.
+# Additions to backend
 
 
 
@@ -30,6 +27,3 @@ app.use("/api/admin", adminRoutes);
 
 
 
-## Optional: shipping address
-If you later add `shippingAddress` to the Order model, the panel shows it automatically
-inside each order's details. Nothing is shown if the field does not exist.
