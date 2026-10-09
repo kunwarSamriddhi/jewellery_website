@@ -196,7 +196,7 @@ const Navbar = ({ showAlert }) => {
               <li>
                 <Link
                   className="dropdown-item py-2"
-                  to="/shop"
+                  to="/shop?category=rings"
                   onClick={() => handleCategoryNav('rings')}
                   style={{ fontSize: '0.85rem' }}
                 >
@@ -206,7 +206,7 @@ const Navbar = ({ showAlert }) => {
               <li>
                 <Link
                   className="dropdown-item py-2"
-                  to="/shop"
+                  to="/shop?category=necklaces"
                   onClick={() => handleCategoryNav('necklaces')}
                   style={{ fontSize: '0.85rem' }}
                 >
@@ -216,7 +216,7 @@ const Navbar = ({ showAlert }) => {
               <li>
                 <Link
                   className="dropdown-item py-2"
-                  to="/shop"
+                  to="/shop?category=earrings"
                   onClick={() => handleCategoryNav('earrings')}
                   style={{ fontSize: '0.85rem' }}
                 >
@@ -226,7 +226,7 @@ const Navbar = ({ showAlert }) => {
               <li>
                 <Link
                   className="dropdown-item py-2"
-                  to="/shop"
+                  to="/shop?category=bracelets"
                   onClick={() => handleCategoryNav('bracelets')}
                   style={{ fontSize: '0.85rem' }}
                 >
@@ -236,7 +236,7 @@ const Navbar = ({ showAlert }) => {
               <li>
                 <Link
                   className="dropdown-item py-2"
-                  to="/shop"
+                  to="/shop?category=sets"
                   onClick={() => handleCategoryNav('sets')}
                   style={{ fontSize: '0.85rem' }}
                 >
@@ -460,19 +460,19 @@ const Navbar = ({ showAlert }) => {
             All Collections
           </Link>
           <div style={{ paddingLeft: '1rem', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-            <Link to="/shop" onClick={() => handleCategoryNav('rings')} style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
+            <Link to="/shop?category=rings" onClick={() => handleCategoryNav('rings')} style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
               &bull; Rings
             </Link>
-            <Link to="/shop" onClick={() => handleCategoryNav('necklaces')} style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
+            <Link to="/shop?category=necklaces" onClick={() => handleCategoryNav('necklaces')} style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
               &bull; Necklaces
             </Link>
-            <Link to="/shop" onClick={() => handleCategoryNav('earrings')} style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
+            <Link to="/shop?category=earrings" onClick={() => handleCategoryNav('earrings')} style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
               &bull; Earrings
             </Link>
-            <Link to="/shop" onClick={() => handleCategoryNav('bracelets')} style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
+            <Link to="/shop?category=bracelets" onClick={() => handleCategoryNav('bracelets')} style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
               &bull; Bracelets
             </Link>
-            <Link to="/shop" onClick={() => handleCategoryNav('sets')} style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
+            <Link to="/shop?category=sets" onClick={() => handleCategoryNav('sets')} style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
               &bull; Sets
             </Link>
           </div>
